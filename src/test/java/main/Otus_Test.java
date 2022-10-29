@@ -1,7 +1,7 @@
 package main;
 
+import components.Header2Right;
 import components.TitleComponent;
-import data.DriverData;
 import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
-public class MainPage_Test {
+public class Otus_Test {
 
     private WebDriver driver;
 
@@ -24,7 +24,7 @@ public class MainPage_Test {
 
     @BeforeEach
     public void initDriver() throws BrowserNotSupportedException {
-        driver = new  WebDriverFactory().getDriver(DriverManagerType.CHROME, null);
+        driver = new  WebDriverFactory().create(DriverManagerType.CHROME, null);
     }
 
     @AfterEach
@@ -38,6 +38,6 @@ public class MainPage_Test {
     @Test
     public void testOtus(){
         new MainPage(driver).open();
-        new TitleComponent(driver).pageTitleShouldBeSameAs("");
+        new Header2Right(driver).clickSingInButton();
     }
 }

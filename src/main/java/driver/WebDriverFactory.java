@@ -12,7 +12,7 @@ public class WebDriverFactory {
 
 //    private String browserName = System.getProperty("browser");
 
-    public WebDriver getDriver(DriverManagerType driverData, MutableCapabilities options) throws BrowserNotSupportedException {
+    public WebDriver create(DriverManagerType driverData, MutableCapabilities options) throws BrowserNotSupportedException {
         switch(driverData) {
             case CHROME:
                 ChromeOptions chromeOptions = new ChromeOptions();
