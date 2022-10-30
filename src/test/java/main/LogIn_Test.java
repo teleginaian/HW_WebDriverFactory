@@ -1,8 +1,8 @@
 package main;
 
-import components.Auth;
 import components.Header2Right;
-import components.LogInButtonClick;
+import components.ModalWindow;
+import data.AuthData;
 import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -16,8 +16,6 @@ import pages.MainPage;
 
 import java.time.Duration;
 
-import static data.AuthData.Login;
-import static data.AuthData.Password;
 
 public class LogIn_Test {
 
@@ -51,14 +49,10 @@ public class LogIn_Test {
         new Header2Right(driver)
                 .clickSingInButton();
 
-        new Auth(driver)
-                .addAuth(Login, Password);
-
-
-        new LogInButtonClick(driver)
+        new ModalWindow(driver)
+                .addLogin(AuthData.Login)
+                .addPassword(AuthData.Password)
                 .clickLogInButton();
-
-
 
 
 

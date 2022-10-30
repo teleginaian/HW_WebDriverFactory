@@ -1,12 +1,11 @@
 package components;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pages.AbsBasePage;
 
-public class LogIn extends AbsBasePage {
+public class MainScreen extends AbsBasePage {
 
-    public LogIn(WebDriver driver) {
+    public MainScreen(WebDriver driver) {
         super(driver);
     }
 }
