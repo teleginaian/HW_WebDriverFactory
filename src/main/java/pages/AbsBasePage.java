@@ -15,9 +15,4 @@ public abstract class AbsBasePage extends AbsPageObject {
     public void open(String path) {
         driver.get(BASE_URL + path);
     }
-
-//    public void addLogin(String login) {
-//        driver.get(AUTH + login);
-//    }
-
 }
