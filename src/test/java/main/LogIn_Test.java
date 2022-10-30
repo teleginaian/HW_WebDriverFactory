@@ -1,6 +1,9 @@
 package main;
 
+import components.Auth;
 import components.Header2Right;
+import components.LogInButtonClick;
+import data.PasswordData;
 import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -12,20 +15,24 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
-public class Otus_Test {
+import java.time.Duration;
+
+import static data.LoginData.Login;
+
+public class LogIn_Test {
 
     private WebDriver driver;
 
-//    @BeforeAll
-//    public static void  init() {
-//        WebDriverManager.chromedriver().setup();
-//    }
+    @BeforeAll
+    public static void  init() {
+        WebDriverManager.chromedriver().setup();
+    }
 
     @BeforeEach
 
     public void initDriver() throws BrowserNotSupportedException {
-        WebDriverManager.chromedriver().setup();
         this.driver = new WebDriverFactory().create(DriverManagerType.CHROME, null);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
     @AfterEach
@@ -37,10 +44,22 @@ public class Otus_Test {
     }
 
     @Test
-    public void testOtusClickSingInButton(){
+    public void testOtusClickSingInButton() {
         new MainPage(driver)
                 .open("/");
+
         new Header2Right(driver)
                 .clickSingInButton();
+
+        new Auth(driver).addLogin(Login)
+                .addPassword(PasswordData.Password);
+
+        new LogInButtonClick(driver)
+                .clickLogInButton();
+
+
+
+
+
     }
 }
