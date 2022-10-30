@@ -1,18 +1,17 @@
 package pages;
 
 import org.openqa.selenium.WebDriver;
+import pageobject.AbsPageObject;
 
-public abstract class AbsBasePage {
+public abstract class AbsBasePage extends AbsPageObject {
 
-    private  String hostname = System.getProperty("base.url");
-
-    protected WebDriver driver;
+    private  String BASE_URL = System.getProperty("base.url");
 
     public AbsBasePage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
-    public void open() {
-        driver.get(hostname);
+    public void open(String path) {
+        driver.get(BASE_URL + path);
     }
 }

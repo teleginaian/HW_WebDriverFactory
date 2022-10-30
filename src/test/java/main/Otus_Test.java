@@ -1,7 +1,6 @@
 package main;
 
 import components.Header2Right;
-import components.TitleComponent;
 import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -17,14 +16,16 @@ public class Otus_Test {
 
     private WebDriver driver;
 
-    @BeforeAll
-    public static void  init() {
-        WebDriverManager.chromedriver().setup();
-    }
+//    @BeforeAll
+//    public static void  init() {
+//        WebDriverManager.chromedriver().setup();
+//    }
 
     @BeforeEach
+
     public void initDriver() throws BrowserNotSupportedException {
-        driver = new  WebDriverFactory().create(DriverManagerType.CHROME, null);
+        WebDriverManager.chromedriver().setup();
+        this.driver = new WebDriverFactory().create(DriverManagerType.CHROME, null);
     }
 
     @AfterEach
@@ -36,8 +37,10 @@ public class Otus_Test {
     }
 
     @Test
-    public void testOtus(){
-        new MainPage(driver).open();
-        new Header2Right(driver).clickSingInButton();
+    public void testOtusClickSingInButton(){
+        new MainPage(driver)
+                .open("/");
+        new Header2Right(driver)
+                .clickSingInButton();
     }
 }

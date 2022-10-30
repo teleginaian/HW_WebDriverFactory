@@ -1,12 +1,14 @@
 package components;
 
 import org.openqa.selenium.WebDriver;
-import pages.AbsBasePage;
+import pageobject.AbsPageObject;
 
-public abstract class AbsBaseComponent {
+
+public abstract class AbsBaseComponent extends AbsPageObject {
 
     protected WebDriver driver;
+
     public AbsBaseComponent(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 }
