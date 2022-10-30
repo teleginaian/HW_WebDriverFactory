@@ -17,7 +17,7 @@ import pages.MainPage;
 import java.time.Duration;
 
 
-public class LogIn_Test {
+public class Otus_Test {
 
     private WebDriver driver;
 
