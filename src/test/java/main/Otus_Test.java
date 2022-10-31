@@ -1,8 +1,9 @@
 package main;
 
-import components.Header2Right;
-import components.ModalWindow;
+import components.*;
 import data.AuthData;
+import data.MainRightMenuItemsData;
+import data.UserData;
 import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -53,6 +54,18 @@ public class Otus_Test {
                 .addLogin(AuthData.Login)
                 .addPassword(AuthData.Password)
                 .clickLogInButton();
+
+        new MainScreen(driver)
+                .moveCursorToItem(MainRightMenuItemsData.PersonalAerea);
+
+        new DropdownHeader2(driver)
+                .clickDropdownPersonalArea();
+
+        new PersonalArea(driver)
+//                .addFName(UserData.Fname)
+//                .addLName(UserData.Lname);
+
+
 
 
 

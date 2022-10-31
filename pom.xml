@@ -13,11 +13,13 @@
         <maven.compiler.target>18</maven.compiler.target>
         <webdriver.manager.version>4.2.0</webdriver.manager.version>
         <selenium.java.version>3.141.59</selenium.java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.1</junit.version>
         <faker.version>1.0.1</faker.version>
 
         <browser>chrome</browser>
         <webdriver.base.url>https://otus.ru</webdriver.base.url>
+
     </properties>
 
     <dependencies>

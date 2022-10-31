@@ -2,7 +2,7 @@ package data;
 
 public enum MainRightMenuItemsData {
 
-    LK("Имя профиля");
+    PersonalAerea("РРјСЏ РїСЂРѕС„РёР»СЏ");
 
     private String name;
 
