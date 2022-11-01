@@ -4,6 +4,7 @@ import components.*;
 import data.AuthData;
 import data.InputFieldData;
 import data.MainRightMenuItemsData;
+import data.OtherData;
 import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -65,6 +66,13 @@ public class Otus_Test {
                 .clickDropdownPersonalArea();
 
         new PersonalArea(driver)
+                .clearUserDataToInputField(InputFieldData.FNAME, "")
+                .clearUserDataToInputField(InputFieldData.FNAMELATIN, "")
+                .clearUserDataToInputField(InputFieldData.LNAME, "")
+                .clearUserDataToInputField(InputFieldData.LNAME, "")
+                .clearUserDataToInputField(InputFieldData.LNAMELATIN, "")
+                .clearUserDataToInputField(InputFieldData.BLOGNAME, "")
+                .clearUserDataToInputField(InputFieldData.DATAOFBIRTH, "")
                 .setUserDataToInputField(InputFieldData.FNAME, "Егор")
                 .setUserDataToInputField(InputFieldData.FNAMELATIN, "Egor")
                 .setUserDataToInputField(InputFieldData.LNAME, "Степанов")
@@ -75,6 +83,21 @@ public class Otus_Test {
         new BasicInformation(driver)
                 .country()
                 .city();
+
+        new ContaintInformation(driver)
+                .contactOne()
+                .contactTwo();
+
+        new Other(driver).gender();
+
+        new Other(driver)
+                .setCompany(OtherData.COMPANY, "ООО  Айтулабс")
+                .jobTitle(OtherData.WORK, "Инженер по тестированию 2 категории");
+
+        new SaveAndContinue(driver)
+                .clickSaveAndContinue();
+
+        driver.quit();
 
 
 
