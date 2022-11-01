@@ -22,7 +22,7 @@ public class ModalWindow extends AbsBasePage {
         WebElement modalWindow = driver.findElement(By.cssSelector("form[action*='login'] input[name='email']"));
         modalWindow.sendKeys(login.getAuth());
 
-        return null;
+        return this;
     }
 
     public ModalWindow addPassword(AuthData password) {
@@ -30,7 +30,7 @@ public class ModalWindow extends AbsBasePage {
         WebElement modalWindow = driver.findElement(By.cssSelector("form[action*='login']  input[type='password']"));
         modalWindow.sendKeys(password.getAuth());
 
-        return null;
+        return this;
     }
 
     public MainScreen clickLogInButton() {

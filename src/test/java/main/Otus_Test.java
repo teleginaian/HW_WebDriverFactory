@@ -9,10 +9,7 @@ import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.config.DriverManagerType;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
@@ -98,6 +95,11 @@ public class Otus_Test {
                 .clickSaveAndContinue();
 
         driver.quit();
+
+        new MainPage(driver)
+                .open("/");
+
+        Assertions.assertEquals("Егор", InputFieldData.FNAME, "Егор");
 
 
 
