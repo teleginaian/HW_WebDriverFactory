@@ -13,35 +13,22 @@ public class ModalWindow extends AbsBasePage {
         super(driver);
     }
 
-
-
     @FindBy(css = "div.new-input-line_last:nth-child(5) > button:nth-child(1)")
     private WebElement logInButton;
 
-    private String loginInputTemplayLocator = "//input[@type='text' and @placeholder='Ёлектронна€ почта']";
-    private String passwordInputTemplayLocator = "//input[@placeholder='¬ведите пароль']";
-
-//    public LogIn clickLogInButton() {
-//        logInButton.click();
-//        return new  LogIn(driver);
-//    }
 
     public ModalWindow addLogin(AuthData login) {
 
-        String locator = String.format(loginInputTemplayLocator, login.getAuth());
-
-        WebElement modalWindow = driver.findElement(By.xpath(locator));
-        modalWindow.sendKeys();
+        WebElement modalWindow = driver.findElement(By.cssSelector("form[action*='login'] input[name='email']"));
+        modalWindow.sendKeys(login.getAuth());
 
         return null;
     }
 
     public ModalWindow addPassword(AuthData password) {
 
-        String locator = String.format(passwordInputTemplayLocator, password.getAuth());
-
-        WebElement modalWindow = driver.findElement(By.xpath(locator));
-        modalWindow.sendKeys();
+        WebElement modalWindow = driver.findElement(By.cssSelector("form[action*='login']  input[type='password']"));
+        modalWindow.sendKeys(password.getAuth());
 
         return null;
     }
@@ -50,6 +37,4 @@ public class ModalWindow extends AbsBasePage {
         logInButton.click();
         return new MainScreen(driver);
     }
-
-
 }

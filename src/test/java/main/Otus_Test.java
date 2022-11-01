@@ -2,8 +2,8 @@ package main;
 
 import components.*;
 import data.AuthData;
+import data.InputFieldData;
 import data.MainRightMenuItemsData;
-import data.UserData;
 import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -16,22 +16,25 @@ import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 
 public class Otus_Test {
 
-    private WebDriver driver;
+    public WebDriver driver;
 
     @BeforeAll
     public static void  init() {
         WebDriverManager.chromedriver().setup();
+
     }
 
     @BeforeEach
 
     public void initDriver() throws BrowserNotSupportedException {
         this.driver = new WebDriverFactory().create(DriverManagerType.CHROME, null);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
     @AfterEach
@@ -62,8 +65,17 @@ public class Otus_Test {
                 .clickDropdownPersonalArea();
 
         new PersonalArea(driver)
-//                .addFName(UserData.Fname)
-//                .addLName(UserData.Lname);
+                .setUserDataToInputField(InputFieldData.FNAME, "Егор")
+                .setUserDataToInputField(InputFieldData.FNAMELATIN, "Egor")
+                .setUserDataToInputField(InputFieldData.LNAME, "Степанов")
+                .setUserDataToInputField(InputFieldData.LNAMELATIN, "Stepunov")
+                .setUserDataToInputField(InputFieldData.BLOGNAME, "stup.eg")
+                .setUserDataToInputField(InputFieldData.DATAOFBIRTH, "18.04.1995");
+
+        new BasicInformation(driver)
+                .country()
+                .city();
+
 
 
 
