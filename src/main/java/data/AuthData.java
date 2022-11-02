@@ -2,7 +2,7 @@ package data;
 
     public enum AuthData {
         Login("mxmrbkv95@gmail.com"),
-        Password("AutoTest2022!");
+        Password("AutoTestOtus2022!");
 
 
     private String auth;

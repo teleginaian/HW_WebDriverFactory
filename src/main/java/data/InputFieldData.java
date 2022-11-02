@@ -7,7 +7,7 @@ public enum InputFieldData {
     LNAME("lname"),
     LNAMELATIN("lname_latin"),
     BLOGNAME("blog_name"),
-    DATAOFBIRTH("18.04.1995");
+    DATAOFBIRTH("date_of_birth");
 
 
     private String name;

@@ -11,9 +11,9 @@ public class PersonalArea extends AbsBaseComponent {
         super(driver);
     }
 
-    public PersonalArea clearUserDataToInputField(InputFieldData clearInputData, String value) {
+    public PersonalArea clearUserDataToInputField(InputFieldData clearInputField) {
 
-        String clearInputFieldSelector = String.format("input[name='%s']", clearInputData.getName());
+        String clearInputFieldSelector = String.format("input[name='%s']", clearInputField.getName());
         driver.findElement(By.cssSelector(clearInputFieldSelector)).clear();
 
         return this;
@@ -22,6 +22,7 @@ public class PersonalArea extends AbsBaseComponent {
     public PersonalArea setUserDataToInputField(InputFieldData inputField, String value) {
 
         String inputFieldSelector = String.format("input[name='%s']", inputField.getName());
+//        driver.findElement(By.cssSelector(inputFieldSelector)).clear();
         driver.findElement(By.cssSelector(inputFieldSelector)).sendKeys(value);
 
         return this;

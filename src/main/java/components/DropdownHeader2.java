@@ -10,7 +10,7 @@ public class DropdownHeader2 extends AbsBaseComponent {
         super(driver);
     }
 
-    @FindBy(css = "a[title='Личный кабинет']")
+    @FindBy(xpath = "//b[@class='header2-menu__dropdown-text_name']")
     private WebElement dropdownPersonalArea;
 
     public PersonalArea clickDropdownPersonalArea() {

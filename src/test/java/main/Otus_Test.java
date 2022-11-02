@@ -63,13 +63,12 @@ public class Otus_Test {
                 .clickDropdownPersonalArea();
 
         new PersonalArea(driver)
-                .clearUserDataToInputField(InputFieldData.FNAME, "")
-                .clearUserDataToInputField(InputFieldData.FNAMELATIN, "")
-                .clearUserDataToInputField(InputFieldData.LNAME, "")
-                .clearUserDataToInputField(InputFieldData.LNAME, "")
-                .clearUserDataToInputField(InputFieldData.LNAMELATIN, "")
-                .clearUserDataToInputField(InputFieldData.BLOGNAME, "")
-                .clearUserDataToInputField(InputFieldData.DATAOFBIRTH, "")
+                .clearUserDataToInputField(InputFieldData.FNAME)
+                .clearUserDataToInputField(InputFieldData.FNAMELATIN)
+                .clearUserDataToInputField(InputFieldData.LNAME)
+                .clearUserDataToInputField(InputFieldData.LNAMELATIN)
+                .clearUserDataToInputField(InputFieldData.BLOGNAME)
+                .clearUserDataToInputField(InputFieldData.DATAOFBIRTH)
                 .setUserDataToInputField(InputFieldData.FNAME, "Егор")
                 .setUserDataToInputField(InputFieldData.FNAMELATIN, "Egor")
                 .setUserDataToInputField(InputFieldData.LNAME, "Степанов")
@@ -85,7 +84,8 @@ public class Otus_Test {
                 .contactOne()
                 .contactTwo();
 
-        new Other(driver).gender();
+        new Other(driver)
+                .gender();
 
         new Other(driver)
                 .setCompany(OtherData.COMPANY, "ООО  Айтулабс")

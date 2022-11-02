@@ -24,6 +24,7 @@ public class Other extends AbsBaseComponent {
     public  Other setCompany(OtherData inputOtherCompany, String value) {
 
         String otherCompanySelector = String.format("input[name = 'company']", inputOtherCompany.getName());
+        driver.findElement(By.cssSelector(otherCompanySelector)).clear();
         driver.findElement(By.cssSelector(otherCompanySelector)).sendKeys(value);
 
         return this;
