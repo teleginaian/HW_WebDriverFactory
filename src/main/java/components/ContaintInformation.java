@@ -30,8 +30,4 @@ public class ContaintInformation extends AbsBaseComponent {
 
         return this;
     }
-
-
-
-
 }

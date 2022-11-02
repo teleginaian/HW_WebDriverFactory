@@ -101,10 +101,5 @@ public class Otus_Test {
 
         Assertions.assertEquals("Егор", InputFieldData.FNAME, "Егор");
 
-
-
-
-
-
     }
 }

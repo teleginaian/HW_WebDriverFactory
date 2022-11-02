@@ -16,7 +16,6 @@ public class ModalWindow extends AbsBasePage {
     @FindBy(css = "div.new-input-line_last:nth-child(5) > button:nth-child(1)")
     private WebElement logInButton;
 
-
     public ModalWindow addLogin(AuthData login) {
 
         WebElement modalWindow = driver.findElement(By.cssSelector("form[action*='login'] input[name='email']"));

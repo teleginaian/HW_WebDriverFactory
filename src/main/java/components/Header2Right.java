@@ -17,6 +17,4 @@ public class Header2Right extends AbsBaseComponent {
         signInButton.click();
         return new ModalWindow(driver);
     }
-
-
 }

@@ -36,6 +36,4 @@ public class BasicInformation extends AbsBaseComponent {
 
         return this;
     }
-
-
 }
