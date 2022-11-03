@@ -1,10 +1,7 @@
 package main;
 
 import components.*;
-import data.AuthData;
-import data.InputFieldData;
-import data.MainRightMenuItemsData;
-import data.OtherData;
+import data.*;
 import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -13,7 +10,6 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import pages.MainPage;
 
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 
@@ -22,16 +18,14 @@ public class Otus_Test {
     public WebDriver driver;
 
     @BeforeAll
-    public static void  init() {
+    public static void init() {
         WebDriverManager.chromedriver().setup();
-
     }
 
     @BeforeEach
 
     public void initDriver() throws BrowserNotSupportedException {
         this.driver = new WebDriverFactory().create(DriverManagerType.CHROME, null);
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
@@ -69,9 +63,9 @@ public class Otus_Test {
                 .clearUserDataToInputField(InputFieldData.LNAMELATIN)
                 .clearUserDataToInputField(InputFieldData.BLOGNAME)
                 .clearUserDataToInputField(InputFieldData.DATAOFBIRTH)
-                .setUserDataToInputField(InputFieldData.FNAME, "Егор")
+                .setUserDataToInputField(InputFieldData.FNAME, "Р•РіРѕСЂ")
                 .setUserDataToInputField(InputFieldData.FNAMELATIN, "Egor")
-                .setUserDataToInputField(InputFieldData.LNAME, "Степанов")
+                .setUserDataToInputField(InputFieldData.LNAME, "РЎС‚РµРїР°РЅРѕРІ")
                 .setUserDataToInputField(InputFieldData.LNAMELATIN, "Stepunov")
                 .setUserDataToInputField(InputFieldData.BLOGNAME, "stup.eg")
                 .setUserDataToInputField(InputFieldData.DATAOFBIRTH, "18.04.1995");
@@ -82,24 +76,40 @@ public class Otus_Test {
 
         new ContaintInformation(driver)
                 .contactOne()
+//                .inputContactOne(InputContactInformationData.VK, "stupeg")
                 .contactTwo();
+//                .inputContactTwo(InputContactInformationData.TELEGRAM, "@stupeg");
 
         new Other(driver)
-                .gender();
-
-        new Other(driver)
-                .setCompany(OtherData.COMPANY, "ООО  Айтулабс")
-                .jobTitle(OtherData.WORK, "Инженер по тестированию 2 категории");
+                .gender()
+                .cleanSetCompany(InputOtherData.COMPANY, "")
+                .cleanJobTitle(InputOtherData.WORK, "")
+                .setCompany(InputOtherData.COMPANY, "РћРћРћ РђР№С‚СѓР»Р°Р±СЃ")
+                .jobTitle(InputOtherData.WORK, "РРЅР¶РµРЅРµСЂ РїРѕ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЋ 2 РєР°С‚РµРіРѕСЂРёРё");
 
         new SaveAndContinue(driver)
                 .clickSaveAndContinue();
 
-        driver.quit();
+            driver.quit();
 
-        new MainPage(driver)
-                .open("/");
+            new MainPage(driver)
+                    .open("/");
 
-        Assertions.assertEquals("Егор", InputFieldData.FNAME, "Егор");
+            new Header2Right(driver)
+                    .clickSingInButton();
 
+            new ModalWindow(driver)
+                    .addLogin(AuthData.Login)
+                    .addPassword(AuthData.Password)
+                    .clickLogInButton();
+
+            new MainScreen(driver)
+                    .moveCursorToItem(MainRightMenuItemsData.PersonalAerea);
+
+            new DropdownHeader2(driver)
+                    .clickDropdownPersonalArea();
+
+        new CheckingPersonalArea(driver)
+                .checkUserDataToInputField();
     }
 }

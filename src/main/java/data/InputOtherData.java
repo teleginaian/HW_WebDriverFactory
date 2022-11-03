@@ -1,6 +1,6 @@
 package data;
 
-public enum OtherData {
+public enum InputOtherData {
 
     COMPANY("company"),
     WORK("work");
@@ -8,7 +8,7 @@ public enum OtherData {
 
     private String name;
 
-    OtherData(String name) {
+    InputOtherData(String name) {
         this.name = name;
     }
 

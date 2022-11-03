@@ -19,10 +19,10 @@ public class PersonalArea extends AbsBaseComponent {
         return this;
     }
 
+
     public PersonalArea setUserDataToInputField(InputFieldData inputField, String value) {
 
         String inputFieldSelector = String.format("input[name='%s']", inputField.getName());
-//        driver.findElement(By.cssSelector(inputFieldSelector)).clear();
         driver.findElement(By.cssSelector(inputFieldSelector)).sendKeys(value);
 
         return this;

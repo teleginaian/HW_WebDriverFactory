@@ -29,6 +29,5 @@ public class ChromeWebDriver implements IDriver {
         downloadLocalWebDriver(DriverManagerType.CHROME);
 
         return new ChromeDriver(chromeOptions);
-
     }
 }
