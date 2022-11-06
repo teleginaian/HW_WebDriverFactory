@@ -1,9 +1,12 @@
 package components;
 
 import data.InputFieldData;
-import org.assertj.core.api.Assertions;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 
 public class PersonalArea extends AbsBaseComponent {
 
@@ -24,6 +27,18 @@ public class PersonalArea extends AbsBaseComponent {
 
         String inputFieldSelector = String.format("input[name='%s']", inputField.getName());
         driver.findElement(By.cssSelector(inputFieldSelector)).sendKeys(value);
+
+        return this;
+    }
+
+    public PersonalArea checkUserDataInputField(InputFieldData inputFieldData, String value) {
+
+        String inputFieldSelector = String.format("input[name='%s']", inputFieldData.getName());
+        String actualValue = driver.findElement(By.cssSelector(inputFieldSelector))
+                .getAttribute("value");
+
+        assertThat(actualValue).as("Error: value in input field {Name} should be {}", inputFieldData
+                .getName(), value).isEqualTo(value);
 
         return this;
     }

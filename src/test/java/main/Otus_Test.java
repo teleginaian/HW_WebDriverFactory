@@ -1,6 +1,7 @@
 package main;
 
 import components.*;
+import components.popup.ModalWindow;
 import data.*;
 import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;
@@ -38,12 +39,17 @@ public class Otus_Test {
     }
 
     @Test
-    public void testOtusClickSingInButton() {
+    public void testOtusClickSingInButton() throws BrowserNotSupportedException {
         new MainPage(driver)
                 .open("/");
 
+        ModalWindow modalWindow = new ModalWindow(driver);
+        modalWindow.modalShouldNotBePresent();
+
         new Header2Right(driver)
                 .clickSingInButton();
+
+        modalWindow.modalShouldBePresent();
 
         new ModalWindow(driver)
                 .addLogin(AuthData.Login)
@@ -66,7 +72,7 @@ public class Otus_Test {
                 .setUserDataToInputField(InputFieldData.FNAME, "Егор")
                 .setUserDataToInputField(InputFieldData.FNAMELATIN, "Egor")
                 .setUserDataToInputField(InputFieldData.LNAME, "Степанов")
-                .setUserDataToInputField(InputFieldData.LNAMELATIN, "Stepunov")
+                .setUserDataToInputField(InputFieldData.LNAMELATIN, "Stepanov")
                 .setUserDataToInputField(InputFieldData.BLOGNAME, "stup.eg")
                 .setUserDataToInputField(InputFieldData.DATAOFBIRTH, "18.04.1995");
 
@@ -76,9 +82,7 @@ public class Otus_Test {
 
         new ContaintInformation(driver)
                 .contactOne()
-//                .inputContactOne(InputContactInformationData.VK, "stupeg")
                 .contactTwo();
-//                .inputContactTwo(InputContactInformationData.TELEGRAM, "@stupeg");
 
         new Other(driver)
                 .gender()
@@ -92,11 +96,17 @@ public class Otus_Test {
 
             driver.quit();
 
+            driver = new WebDriverFactory().create(DriverManagerType.CHROME, null);
+
             new MainPage(driver)
                     .open("/");
 
+            modalWindow.modalShouldNotBePresent();
+
             new Header2Right(driver)
                     .clickSingInButton();
+
+            modalWindow.modalShouldBePresent();
 
             new ModalWindow(driver)
                     .addLogin(AuthData.Login)
@@ -109,7 +119,26 @@ public class Otus_Test {
             new DropdownHeader2(driver)
                     .clickDropdownPersonalArea();
 
-        new CheckingPersonalArea(driver)
-                .checkUserDataToInputField();
+            new PersonalArea(driver)
+                    .checkUserDataInputField(InputFieldData.FNAME, "Егор")
+                    .checkUserDataInputField(InputFieldData.FNAMELATIN, "Egor")
+                    .checkUserDataInputField(InputFieldData.LNAME, "Степанов")
+                    .checkUserDataInputField(InputFieldData.LNAMELATIN, "Stepanov")
+                    .checkUserDataInputField(InputFieldData.BLOGNAME, "stup.eg")
+                    .checkUserDataInputField(InputFieldData.DATAOFBIRTH, "18.04.1995");
+
+            new BasicInformation(driver)
+                    .checkCountry()
+                    .checkCity();
+
+            new ContaintInformation(driver)
+                    .checkContactOne()
+                    .checkContactTwo();
+
+            new Other(driver)
+                    .checkCompany(InputOtherData.COMPANY, "ООО Айтулабс")
+                    .checkJobTitle(InputOtherData.WORK, "Инженер по тестированию 2 категории");
+
+
     }
 }

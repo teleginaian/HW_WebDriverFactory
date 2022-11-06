@@ -1,8 +1,11 @@
 package components;
 
+import components.popup.IModal;
 import data.InputOtherData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class Other extends AbsBaseComponent {
 
@@ -13,9 +16,10 @@ public class Other extends AbsBaseComponent {
     public Other gender() {
 
         if(!driver.findElement(By.cssSelector("select[id = 'id_gender']"))
-                .getText().contains("Не указано"))
+                .getText().contains("Мужской"))
         {
-            driver.findElement(By.cssSelector("select[id = 'id_gender']  option[value='m']")).click();
+            driver.findElement(By.cssSelector("select[id = 'id_gender']")).click();
+            driver.findElement(By.cssSelector("option[value='m']")).click();
         }
 
         return this;
@@ -51,6 +55,30 @@ public class Other extends AbsBaseComponent {
         String otherJobTitleSelector = String.format("input[name = 'work']", inputOtherJobTitle.getName());
         driver.findElement(By.cssSelector(otherJobTitleSelector)).clear();
         driver.findElement(By.cssSelector(otherJobTitleSelector)).sendKeys(value);
+
+        return this;
+    }
+
+    public Other checkCompany(InputOtherData inputOtherData, String value) {
+
+        String inputFieldSelector = String.format("input[name = 'company']", inputOtherData.getName());
+        String actualValue = driver.findElement(By.cssSelector(inputFieldSelector))
+                .getAttribute("value");
+
+        assertThat(actualValue).as("Error: value in input field {Компания} should be {ООО Айтулабс}", inputOtherData
+                .getName(), value).isEqualTo(value);
+
+        return this;
+    }
+
+    public Other checkJobTitle(InputOtherData inputOtherData, String value) {
+
+        String inputFieldSelector = String.format("input[name = 'work']", inputOtherData.getName());
+        String actualValue = driver.findElement(By.cssSelector(inputFieldSelector))
+                .getAttribute("value");
+
+        assertThat(actualValue).as("Error: value in input field {Должность} should be {Инженер по тестированию 2 категории}", inputOtherData
+                .getName(), value).isEqualTo(value);
 
         return this;
     }
