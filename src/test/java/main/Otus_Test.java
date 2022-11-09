@@ -1,7 +1,7 @@
 package main;
 
 import components.*;
-import components.popup.ModalWindow;
+import components.dropdown.ModalWindow;
 import data.*;
 import exceptions.BrowserNotSupportedException;
 import driver.WebDriverFactory;

@@ -57,7 +57,8 @@ public class BasicInformation extends AbsBaseComponent {
         String actualValue = driver.findElement(By.xpath("//*[contains(text(), 'Тула')]"))
                 .getAttribute("Тула");
 
-        assertThat(actualValue).as("Error: value in input field {City} should be {Тула}").isEqualTo("Тула");
+        assertThat(actualValue).as("Error: value in input field {City} should be {Тула}")
+                .isEqualTo("Тула");
 
         return this;
     }

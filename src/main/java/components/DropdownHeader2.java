@@ -6,7 +6,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class DropdownHeader2 extends AbsBaseComponent {
 
-    public DropdownHeader2 (WebDriver driver) {
+    public
+    DropdownHeader2 (WebDriver driver) {
         super(driver);
     }
 

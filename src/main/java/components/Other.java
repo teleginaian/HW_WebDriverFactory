@@ -1,6 +1,5 @@
 package components;
 
-import components.popup.IModal;
 import data.InputOtherData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,12 +14,12 @@ public class Other extends AbsBaseComponent {
 
     public Other gender() {
 
-        if(!driver.findElement(By.cssSelector("select[id = 'id_gender']"))
-                .getText().contains("Мужской"))
-        {
+//        if(!driver.findElement(By.cssSelector("select[id = 'id_gender']"))
+//                .getText().contains("Не указано"))
+//        {
             driver.findElement(By.cssSelector("select[id = 'id_gender']")).click();
             driver.findElement(By.cssSelector("option[value='m']")).click();
-        }
+//        }
 
         return this;
     }

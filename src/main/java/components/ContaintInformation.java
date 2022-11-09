@@ -15,6 +15,8 @@ public class ContaintInformation extends AbsBaseComponent {
 
     public ContaintInformation contactOne() {
 
+        driver.findElement(By.xpath("//button[@type='button'][(text() = 'Удалить')]"))
+                .click();
         driver.findElement(By.xpath("//button[@type='button'][(text() = 'Добавить')]"))
                 .click();
         driver.findElement(By.xpath("//*[contains(@class, 'select')][.//*[text() = 'Способ связи']]"))
@@ -33,7 +35,7 @@ public class ContaintInformation extends AbsBaseComponent {
 
         driver.findElement(By.xpath("//button[@type='button'][(text() = 'Добавить')]"))
                 .click();
-        driver.findElement(By.xpath("//*[contains(@class, 'select')][.//*[text() = 'Способ связи']]"))
+        driver.findElement(By.xpath("//*[contains(@class, 'input')][.//*[text() = 'Способ связи']]"))
                 .click();
         driver.findElement(By.cssSelector(".lk-cv-block__select-options:not(.hide) .js-custom-select-options button[title ='Тelegram']"))
                 .click();
@@ -47,20 +49,20 @@ public class ContaintInformation extends AbsBaseComponent {
 
     public ContaintInformation checkContactOne() {
 
-        String actualValue = driver.findElement(By.cssSelector("input[ id='id_contact-0-value']"))
+        String actualValue = driver.findElement(By.cssSelector("input[ id='id_contact-1-value']"))
                 .getAttribute("vk.com/stuprg");
 
-        assertThat(actualValue).as("Error: value in input field {Contact Vk} should be {vk.com/stuprg}").isEqualTo("vk.com/stuprg");
+        assertThat(actualValue).as("Error: value in input field {} should be {}").isEqualTo("vk.com/stuprg");
 
         return this;
     }
 
     public ContaintInformation checkContactTwo() {
 
-        String actualValue = driver.findElement(By.cssSelector("input[ id='id_contact-1-value']"))
+        String actualValue = driver.findElement(By.cssSelector("input[ id='id_contact-2-value']"))
                 .getAttribute("@stupeg");
 
-        assertThat(actualValue).as("Error: value in input field {Contact Tg} should be {@stupeg}").isEqualTo("@stupeg");
+        assertThat(actualValue).as("Error: value in input field {} should be {}").isEqualTo("@stupeg");
 
         return this;
     }

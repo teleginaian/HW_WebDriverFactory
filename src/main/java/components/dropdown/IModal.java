@@ -1,4 +1,4 @@
-package components.popup;
+package components.dropdown;
 
 public interface IModal {
 

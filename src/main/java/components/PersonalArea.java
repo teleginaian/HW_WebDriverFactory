@@ -37,7 +37,7 @@ public class PersonalArea extends AbsBaseComponent {
         String actualValue = driver.findElement(By.cssSelector(inputFieldSelector))
                 .getAttribute("value");
 
-        assertThat(actualValue).as("Error: value in input field {Name} should be {}", inputFieldData
+        assertThat(actualValue).as("Error: value in input field {} should be {}", inputFieldData
                 .getName(), value).isEqualTo(value);
 
         return this;
