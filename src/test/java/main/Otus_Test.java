@@ -94,51 +94,51 @@ public class Otus_Test {
         new SaveAndContinue(driver)
                 .clickSaveAndContinue();
 
-            driver.quit();
+//            driver.quit();
 
-            driver = new WebDriverFactory().create(DriverManagerType.CHROME, null);
-
-            new MainPage(driver)
-                    .open("/");
-
-            modalWindow.modalShouldNotBePresent();
-
-            new Header2Right(driver)
-                    .clickSingInButton();
-
-            modalWindow.modalShouldBePresent();
-
-            new ModalWindow(driver)
-                    .addLogin(AuthData.Login)
-                    .addPassword(AuthData.Password)
-                    .clickLogInButton();
-
-            new MainScreen(driver)
-                    .moveCursorToItem(MainRightMenuItemsData.PersonalAerea);
-
-            new DropdownHeader2(driver)
-                    .clickDropdownPersonalArea();
-
-            new PersonalArea(driver)
-                    .checkUserDataInputField(InputFieldData.FNAME, "Егор")
-                    .checkUserDataInputField(InputFieldData.FNAMELATIN, "Egor")
-                    .checkUserDataInputField(InputFieldData.LNAME, "Степанов")
-                    .checkUserDataInputField(InputFieldData.LNAMELATIN, "Stepanov")
-                    .checkUserDataInputField(InputFieldData.BLOGNAME, "stup.eg")
-                    .checkUserDataInputField(InputFieldData.DATAOFBIRTH, "18.04.1995");
-
-            new BasicInformation(driver)
-                    .checkCountry()
-                    .checkCity();
-
-            new ContaintInformation(driver)
-                    .checkContactOne()
-                    .checkContactTwo();
-
-            new Other(driver)
-                    .checkCompany(InputOtherData.COMPANY, "ООО Айтулабс")
-                    .checkJobTitle(InputOtherData.WORK, "Инженер по тестированию 2 категории");
-
-
+//            driver = new WebDriverFactory().create(DriverManagerType.CHROME, null);
+//
+//        new MainPage(driver)
+//                .open("/");
+//
+//        ModalWindow modalWindowReturn = new ModalWindow(driver);
+//        modalWindowReturn.modalShouldNotBePresent();
+//
+//        new Header2Right(driver)
+//                .clickSingInButton();
+//
+//        modalWindowReturn.modalShouldBePresent();
+//
+//        new ModalWindow(driver)
+//                .addLogin(AuthData.Login)
+//                .addPassword(AuthData.Password)
+//                .clickLogInButton();
+//
+//        new MainScreen(driver)
+//                .moveCursorToItem(MainRightMenuItemsData.PersonalAerea);
+//
+//        new DropdownHeader2(driver)
+//                .clickDropdownPersonalArea();
+//
+//            new PersonalArea(driver)
+//                    .checkUserDataInputField(InputFieldData.FNAME, "Егор")
+//                    .checkUserDataInputField(InputFieldData.FNAMELATIN, "Egor")
+//                    .checkUserDataInputField(InputFieldData.LNAME, "Степанов")
+//                    .checkUserDataInputField(InputFieldData.LNAMELATIN, "Stepanov")
+//                    .checkUserDataInputField(InputFieldData.BLOGNAME, "stup.eg")
+//                    .checkUserDataInputField(InputFieldData.DATAOFBIRTH, "18.04.1995");
+//
+//            new BasicInformation(driver)
+//                    .checkCountry()
+//                    .checkCity();
+//
+//            new ContaintInformation(driver)
+//                    .checkContactOne()
+//                    .checkContactTwo();
+//
+//            new Other(driver)
+//                    .checkGender("Мужской")
+//                    .checkCompany(InputOtherData.COMPANY, "ООО Айтулабс")
+//                    .checkJobTitle(InputOtherData.WORK, "Инженер по тестированию 2 категории");
     }
 }

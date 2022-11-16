@@ -1,12 +1,17 @@
 package components;
 
-import data.InputContactInformationData;
+import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+@Slf4j
 public class ContaintInformation extends AbsBaseComponent {
 
     public ContaintInformation(WebDriver driver) {
@@ -15,8 +20,8 @@ public class ContaintInformation extends AbsBaseComponent {
 
     public ContaintInformation contactOne() {
 
-        driver.findElement(By.xpath("//button[@type='button'][(text() = 'Удалить')]"))
-                .click();
+//        driver.findElement(By.xpath("//button[@type='button'][(text() = 'Удалить')]"))
+//                .click();
         driver.findElement(By.xpath("//button[@type='button'][(text() = 'Добавить')]"))
                 .click();
         driver.findElement(By.xpath("//*[contains(@class, 'select')][.//*[text() = 'Способ связи']]"))
@@ -47,23 +52,24 @@ public class ContaintInformation extends AbsBaseComponent {
         return this;
     }
 
-    public ContaintInformation checkContactOne() {
+    public ContaintInformation checkContactOne(String value) {
+
+        String actualValue = driver.findElement(By.cssSelector("input[ value='id_contact-0-value']"))
+                .getAttribute(value);
+
+        assertThat(actualValue).as("It should be {}", value).isEqualTo(value);
+
+        return this;
+    }
+
+    public ContaintInformation checkContactTwo(String value) {
 
         String actualValue = driver.findElement(By.cssSelector("input[ id='id_contact-1-value']"))
-                .getAttribute("vk.com/stuprg");
+                .getAttribute(value);
 
-        assertThat(actualValue).as("Error: value in input field {} should be {}").isEqualTo("vk.com/stuprg");
-
-        return this;
-    }
-
-    public ContaintInformation checkContactTwo() {
-
-        String actualValue = driver.findElement(By.cssSelector("input[ id='id_contact-2-value']"))
-                .getAttribute("@stupeg");
-
-        assertThat(actualValue).as("Error: value in input field {} should be {}").isEqualTo("@stupeg");
+        assertThat(actualValue).as("It should be {vk.com/stuprg}", value).isEqualTo(value);
 
         return this;
     }
+
 }

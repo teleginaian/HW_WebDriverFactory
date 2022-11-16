@@ -1,11 +1,7 @@
 package components;
 
-import data.InputFieldData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
-import static javax.swing.text.html.CSS.getAttribute;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class BasicInformation extends AbsBaseComponent {
@@ -47,9 +43,9 @@ public class BasicInformation extends AbsBaseComponent {
         String actualValue = driver.findElement(By.xpath("//*[contains(text(), 'Россия')]"))
                 .getAttribute("Россия");
 
-        assertThat(actualValue).as("Error: value in input field {Country} should be {Россия}").isEqualTo("Россия");
+        assertThat(actualValue).as("Error: value in input field {} should be {}").isEqualTo("Россия");
 
-        return this;
+        return null;
     }
 
     public BasicInformation checkCity() {
@@ -57,7 +53,7 @@ public class BasicInformation extends AbsBaseComponent {
         String actualValue = driver.findElement(By.xpath("//*[contains(text(), 'Тула')]"))
                 .getAttribute("Тула");
 
-        assertThat(actualValue).as("Error: value in input field {City} should be {Тула}")
+        assertThat(actualValue).as("Error: value in input field {} should be {}")
                 .isEqualTo("Тула");
 
         return this;
