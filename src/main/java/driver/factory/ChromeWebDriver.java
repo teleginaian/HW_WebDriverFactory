@@ -14,6 +14,7 @@ import java.util.logging.Level;
 public class ChromeWebDriver implements IDriver {
     public WebDriver newDriver() throws BrowserNotSupportedException {
         ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--start-fullscreen");
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--no-first-run");
         chromeOptions.addArguments("--homepage+about:blank");

@@ -75,13 +75,14 @@ public class CheckOtus_Test {
                 .checkUserDataInputField(InputFieldData.BLOGNAME, "stup.eg")
                 .checkUserDataInputField(InputFieldData.DATAOFBIRTH, "18.04.1995");
 
-//        new BasicInformation(driver)
-//                .checkCountry()
-//                .checkCity();
+        new BasicInformation(driver)
+                .checkCountry("Россия")
+                .checkCity("Тула")
+                .checkEnglishLevel("Начальный уровень (Beginner)");
 
         new ContaintInformation(driver)
-                .checkContactOne("vk.com/stuprg")
-                .checkContactTwo("@stupeg");
+                .checkContactOne("@stupeg")
+                .checkContactTwo("vk.com/stuprg");
 
         new Other(driver)
                 .checkGender("Мужской")

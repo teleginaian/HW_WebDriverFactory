@@ -18,46 +18,59 @@ public class ContaintInformation extends AbsBaseComponent {
         super(driver);
     }
 
-    public ContaintInformation contactOne() {
-
-//        driver.findElement(By.xpath("//button[@type='button'][(text() = 'Удалить')]"))
-//                .click();
-        driver.findElement(By.xpath("//button[@type='button'][(text() = 'Добавить')]"))
-                .click();
-        driver.findElement(By.xpath("//*[contains(@class, 'select')][.//*[text() = 'Способ связи']]"))
-                .click();
-        driver.findElement(By.cssSelector(".lk-cv-block__select-options:not(.hide) .js-custom-select-options button[title ='VK']"))
-                .click();
-
-        WebElement inputText = driver.findElement(By.cssSelector("input[ id='id_contact-0-value']"));
-        inputText.clear();
-        inputText.sendKeys("vk.com/stuprg");
-
+    public ContaintInformation deletedContact() {
+// div[data-prefix="contact"] .js-formset-row:not(.hide)
+        List<WebElement> delButton = driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) .js-formset-delete"));
+        for(int i=0; i<delButton.size(); i++) {
+            if (delButton.get(i).isDisplayed()) {
+                delButton.get(i).click();
+            }
+        }
         return this;
     }
 
-    public ContaintInformation contactTwo() {
+    public ContaintInformation contactOne() {
 
         driver.findElement(By.xpath("//button[@type='button'][(text() = 'Добавить')]"))
                 .click();
-        driver.findElement(By.xpath("//*[contains(@class, 'input')][.//*[text() = 'Способ связи']]"))
+        driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) .input")).get(0)
                 .click();
-        driver.findElement(By.cssSelector(".lk-cv-block__select-options:not(.hide) .js-custom-select-options button[title ='Тelegram']"))
+        driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) [title='Тelegram']")).get(0)
                 .click();
 
-        WebElement inputText = driver.findElement(By.cssSelector("input[ id='id_contact-1-value']"));
+        WebElement inputText = driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) input[type='text']"))
+                .get(0);
         inputText.clear();
         inputText.sendKeys("@stupeg");
 
         return this;
     }
 
+    public ContaintInformation contactTwo() {
+
+
+        driver.findElement(By.xpath("//button[@type='button'][(text() = 'Добавить')]"))
+                .click();
+        driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) .input")).get(2)
+                .click();
+        driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) [title='VK']")).get(1)
+                .click();
+
+        WebElement inputText = driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) input[type='text']"))
+                .get(1);
+        inputText.clear();
+        inputText.sendKeys("vk.com/stuprg");
+
+        return this;
+    }
+
     public ContaintInformation checkContactOne(String value) {
 
-        String actualValue = driver.findElement(By.cssSelector("input[ value='id_contact-0-value']"))
-                .getAttribute(value);
+        String actualValue = driver.findElement(By.cssSelector("input[ id='id_contact-0-value']"))
+                .getAttribute("value");
 
-        assertThat(actualValue).as("It should be {}", value).isEqualTo(value);
+        assertThat(actualValue).as("It should be {}", value)
+                .isEqualTo(value);
 
         return this;
     }
@@ -65,9 +78,10 @@ public class ContaintInformation extends AbsBaseComponent {
     public ContaintInformation checkContactTwo(String value) {
 
         String actualValue = driver.findElement(By.cssSelector("input[ id='id_contact-1-value']"))
-                .getAttribute(value);
+                .getAttribute("value");
 
-        assertThat(actualValue).as("It should be {vk.com/stuprg}", value).isEqualTo(value);
+        assertThat(actualValue).as("It should be {}", value)
+                .isEqualTo(value);
 
         return this;
     }

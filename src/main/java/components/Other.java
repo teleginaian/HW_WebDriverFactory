@@ -60,8 +60,8 @@ public class Other extends AbsBaseComponent {
 
     public Other checkGender(String value) {
 
-        String selector = driver.findElement(By.cssSelector("option[value='m']"))
-                .getAttribute(value);
+        String selector = driver.findElement(By.cssSelector("#id_gender [selected]"))
+                .getText();
 
                 assertThat(selector).as("It should be {}", value)
                         .isEqualTo(value);
@@ -85,7 +85,7 @@ public class Other extends AbsBaseComponent {
 
         String inputFieldSelector = String.format("input[name = 'work']", inputOtherData.getName());
         String actualValue = driver.findElement(By.cssSelector(inputFieldSelector))
-                .getAttribute(value);
+                .getAttribute("value");
 
         assertThat(actualValue).as("Error: value in input field {} should be {}", inputOtherData
                 .getName(), value).isEqualTo(value);
