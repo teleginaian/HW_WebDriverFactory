@@ -95,5 +95,52 @@ public class Otus_Test {
 
         new SaveAndContinue(driver)
                 .clickSaveAndContinue();
+
+        close();
+        initDriver();
+
+        new MainPage(driver)
+                .open("/");
+
+        ModalWindow modalWindowReturn = new ModalWindow(driver);
+        modalWindowReturn.modalShouldNotBePresent();
+
+        new Header2Right(driver)
+                .clickSingInButton();
+
+        modalWindowReturn.modalShouldBePresent();
+
+        new ModalWindow(driver)
+                .addLogin(AuthData.Login)
+                .addPassword(AuthData.Password)
+                .clickLogInButton();
+
+        new MainScreen(driver)
+                .moveCursorToItem(MainRightMenuItemsData.PersonalAerea);
+
+        new DropdownHeader2(driver)
+                .clickDropdownPersonalArea();
+
+        new PersonalArea(driver)
+                .checkUserDataInputField(InputFieldData.FNAME, "Егор")
+                .checkUserDataInputField(InputFieldData.FNAMELATIN, "Egor")
+                .checkUserDataInputField(InputFieldData.LNAME, "Степанов")
+                .checkUserDataInputField(InputFieldData.LNAMELATIN, "Stepanov")
+                .checkUserDataInputField(InputFieldData.BLOGNAME, "stup.eg")
+                .checkUserDataInputField(InputFieldData.DATAOFBIRTH, "18.04.1995");
+
+        new BasicInformation(driver)
+                .checkCountry("Россия")
+                .checkCity("Тула")
+                .checkEnglishLevel("Начальный уровень (Beginner)");
+
+        new ContaintInformation(driver)
+                .checkContactOne("@stupeg")
+                .checkContactTwo("vk.com/stuprg");
+
+        new Other(driver)
+                .checkGender("Мужской")
+                .checkCompany(InputOtherData.COMPANY, "ООО Айтулабс")
+                .checkJobTitle(InputOtherData.WORK, "Инженер по тестированию 2 категории");
     }
 }

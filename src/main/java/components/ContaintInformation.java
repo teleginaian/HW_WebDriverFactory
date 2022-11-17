@@ -19,7 +19,7 @@ public class ContaintInformation extends AbsBaseComponent {
     }
 
     public ContaintInformation deletedContact() {
-// div[data-prefix="contact"] .js-formset-row:not(.hide)
+
         List<WebElement> delButton = driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) .js-formset-delete"));
         for(int i=0; i<delButton.size(); i++) {
             if (delButton.get(i).isDisplayed()) {
