@@ -83,13 +83,13 @@ public class Otus_Test {
 
         new ContaintInformation(driver)
                 .deletedContact()
-                .contactOne()
-                .contactTwo();
+                .contactOne(ContactData.TELEGRAM)
+                .contactTwo(ContactData.VK);
 
         new Other(driver)
-                .gender()
-                .cleanSetCompany(InputOtherData.COMPANY, "")
-                .cleanJobTitle(InputOtherData.WORK, "")
+                .gender(GenderData.MAN)
+                .cleanSetCompany(InputOtherData.COMPANY)
+                .cleanJobTitle(InputOtherData.WORK)
                 .setCompany(InputOtherData.COMPANY, "ООО Айтулабс")
                 .jobTitle(InputOtherData.WORK, "Инженер по тестированию 2 категории");
 

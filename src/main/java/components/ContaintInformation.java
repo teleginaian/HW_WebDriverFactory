@@ -1,5 +1,6 @@
 package components;
 
+import data.ContactData;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
@@ -29,13 +30,15 @@ public class ContaintInformation extends AbsBaseComponent {
         return this;
     }
 
-    public ContaintInformation contactOne() {
+    public ContaintInformation contactOne(ContactData contactData) {
+
+        String contactNameSelector = String.format("div[data-prefix = 'contact'] .js-formset-row:not(.hide) [title='%s']", contactData.getName());
 
         driver.findElement(By.xpath("//button[@type='button'][(text() = 'Добавить')]"))
                 .click();
         driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) .input")).get(0)
                 .click();
-        driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) [title='Тelegram']")).get(0)
+        driver.findElements(By.cssSelector(contactNameSelector)).get(0)
                 .click();
 
         WebElement inputText = driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) input[type='text']"))
@@ -46,14 +49,15 @@ public class ContaintInformation extends AbsBaseComponent {
         return this;
     }
 
-    public ContaintInformation contactTwo() {
+    public ContaintInformation contactTwo(ContactData contactData) {
 
+        String contactNameSelector = String.format("div[data-prefix = 'contact'] .js-formset-row:not(.hide) [title='%s']", contactData.getName());
 
         driver.findElement(By.xpath("//button[@type='button'][(text() = 'Добавить')]"))
                 .click();
         driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) .input")).get(2)
                 .click();
-        driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) [title='VK']")).get(1)
+        driver.findElements(By.cssSelector(contactNameSelector)).get(1)
                 .click();
 
         WebElement inputText = driver.findElements(By.cssSelector("div[data-prefix = 'contact'] .js-formset-row:not(.hide) input[type='text']"))

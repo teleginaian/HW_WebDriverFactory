@@ -13,10 +13,10 @@ public class BasicInformation extends AbsBaseComponent {
 
     public BasicInformation country() {
 
-        if(!driver.findElement(By.cssSelector("div[class='select lk-cv-block__input lk-cv-block__input_full js-lk-cv-dependent-master js-lk-cv-custom-select']"))
+        if(!driver.findElement(By.cssSelector("input[name ='country']+div.input"))
                 .getText().contains("Россия"))
         {
-            driver.findElement(By.cssSelector("div[class='select lk-cv-block__input lk-cv-block__input_full js-lk-cv-dependent-master js-lk-cv-custom-select']"))
+            driver.findElement(By.cssSelector("input[name ='country']+div.input"))
                     .click();
             driver.findElement(By.xpath("//*[contains(text(), 'Россия')]"))
                     .click();

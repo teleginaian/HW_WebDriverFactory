@@ -1,8 +1,10 @@
 package components;
 
+import data.GenderData;
 import data.InputOtherData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -12,19 +14,17 @@ public class Other extends AbsBaseComponent {
         super(driver);
     }
 
-    public Other gender() {
+    public Other gender(GenderData genderData) {
 
-//        if(!driver.findElement(By.cssSelector("select[id = 'id_gender']"))
-//                .getText().contains("Не указано"))
-//        {
-            driver.findElement(By.cssSelector("select[id = 'id_gender']")).click();
-            driver.findElement(By.cssSelector("option[value='m']")).click();
-//        }
+        String genderValue = String.format("%s", genderData.getName());
+
+        Select gen = new Select(driver.findElement(By.id("id_gender")));
+        gen.selectByValue(genderValue);
 
         return this;
     }
 
-    public Other cleanSetCompany(InputOtherData clearInputOtherCompany, String value) {
+    public Other cleanSetCompany(InputOtherData clearInputOtherCompany) {
 
         String cleanOtherCompanySelector = String.format("input[name = 'company']", clearInputOtherCompany.getName());
         driver.findElement(By.cssSelector(cleanOtherCompanySelector)).clear();
@@ -40,7 +40,7 @@ public class Other extends AbsBaseComponent {
         return this;
     }
 
-    public Other cleanJobTitle(InputOtherData cleanInputOtherJobTitle, String value) {
+    public Other cleanJobTitle(InputOtherData cleanInputOtherJobTitle) {
 
         String cleanOtherJobTitleSelector = String.format("input[name = 'work']", cleanInputOtherJobTitle.getName());
         driver.findElement(By.cssSelector(cleanOtherJobTitleSelector)).clear();
